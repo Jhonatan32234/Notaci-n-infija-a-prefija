@@ -4,7 +4,7 @@ import { LinkedList } from "./LinkedList.js";
 export class InfToPre{
    
 
- infixToPrefix(infix) {
+  infijaAprefija(infija) {
     let precedence = {
         '+': 1,
         '-': 1,
@@ -13,48 +13,49 @@ export class InfToPre{
         '^': 3
     };
 
-    let operators = new LinkedList();
-    let operands = new LinkedList();
+    let operador = new LinkedList();
+    let operandos = new LinkedList();
 
-    for (let i = infix.length - 1; i >= 0; i--) {
-        let char = infix[i];
+    for (let i = infija.length - 1; i >= 0; i--) {
+        let char = infija[i];
         if (char === ')' || char === '(') continue;
         else if (char in precedence) {
-            while (operators.head !== null && precedence[operators.head.data] >= precedence[char]) {
-                let op = operators.head.data;
-                operators.head = operators.head.next;
+            while (operador.head !== null && precedence[operador.head.data] >= precedence[char]) {
+                let op = operador.head.data;
+                operador.head = operador.head.next;
 
-                let operand1 = operands.head.data;
-                operands.head = operands.head.next;
+                let operand1 = operandos.head.data;
+                operandos.head = operandos.head.next;
 
-                let operand2 = operands.head.data;
-                operands.head = operands.head.next;
+                let operand2 = operandos.head.data;
+                operandos.head = operandos.head.next;
 
-                operands.add(op + operand2 + operand1);
+                operandos.add(op + operand2 + operand1);
             }
 
-            operators.add(char);
+            operador.add(char);
         } else {
-            operands.add(char);
+          operandos.add(char);
         }
     }
 
-    while (operators.head !== null) {
-        const op = operators.head.data;
-        operators.head = operators.head.next;
+    while (operador.head !== null) {
+        const op = operador.head.data;
+        operador.head = operador.head.next;
 
-        const operand1 = operands.head.data;
-        operands.head = operands.head.next;
+        const operand1 = operandos.head.data;
+        operandos.head = operandos.head.next;
 
-        const operand2 = operands.head.data;
-        operands.head = operands.head.next;
+        const operand2 = operandos.head.data;
+        operandos.head = operandos.head.next;
 
-        operands.add(op + operand2 + operand1);
+        operandos.add(op + operand2 + operand1);
     }
 
-    return operands.display();
+    return operandos.display();
 }
 
 }
+
 
 
