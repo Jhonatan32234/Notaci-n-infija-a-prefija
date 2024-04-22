@@ -1,10 +1,9 @@
 import { inTopre } from "./dependencies.js";
 
-let boton= document.getElementById("action");
+let boton = document.getElementById("convertir");
 boton.addEventListener("click",function(){
-
-    let dato = document.getElementById("enter").value;
-    inTopre.infijaAprefija(dato);
-   
-    inTopre.getData();
+    
+    let infija = document.getElementById("infija").value;
+    let prefija = inTopre.infijaAprefija(infija);
+    document.getElementById("prefija").innerText = prefija;
 });
